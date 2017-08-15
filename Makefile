@@ -8,18 +8,16 @@ memhack:
 	@echo Building binaries ...
 	@go build -v $(LDFLAGS_STATIC) -o build/hackme platform/hackme/main.go
 	@go build -v $(LDFLAGS_STATIC) -o build/memhack platform/memhack/main.go
-	@upx -o build/hackme.packed build/hackme >/dev/null
-	@upx -o build/memhack.packed build/memhack >/dev/null
-
+	@go build -v $(LDFLAGS_STATIC) -o build/memsearch platform/memsearch/main.go
+	
 build: memhack
 
 clean:
 	@echo Cleaning up previous build ...
-	@rm -f build/hackme build/hackme.packed build/memhack build/memhack.packed
+	@rm -f build/hackme build/memhack build/memsearch
 
-packages:
-	@echo Getting system libraries ...
-	sudo apt-get install -y upx
+install:
+	@echo Installing ptrace settings ...
 
 test:
 	@echo Testing ...
