@@ -5,23 +5,28 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"strconv"
+	"os"
 
 	"github.com/andygeiss/go-ptrace/infrastructure/process"
 )
 
 func main() {
 	// read input parameters
-	flagAddr := flag.String("addr", "0x12345678", "target process address")
-	flagPID := flag.String("pid", "0", "target process PID")
-	flagVal := flag.String("value", "12345678", "64bit int value")
+	flagAddr := flag.Int64("addr", 0, "64 bit target address")
+	flagPID := flag.Int64("pid", 0, "target process PID")
+	flagVal := flag.Int64("value", 0, "64 bit int value")
 	flag.Parse()
-	addr64, err := strconv.ParseInt(*flagAddr, 0, 64)
-	pid64, err := strconv.ParseInt(*flagPID, 0, 64)
-	pid := int(pid64)
-	val64, err := strconv.ParseInt(*flagVal, 0, 64)
-	wanted := uint64(val64)
-	//
+	args := os.Args
+	if len(args) < 2 {
+		fmt.Printf("Usage: %s\n", args[0])
+		flag.PrintDefaults()
+		return
+	}
+	// convert args to types needed
+	addr := int64(*flagAddr)
+	pid := int(*flagPID)
+	value := uint64(*flagVal)
+	// attach target process
 	wpid, err := process.Attach(pid)
 	if err != nil {
 		log.Fatalf("Attach error: %s\n", err.Error())
@@ -29,18 +34,11 @@ func main() {
 	fmt.Printf("Process [%d] attached.\n", pid)
 	// write data to process memory
 	bs := make([]byte, 8)
-	binary.LittleEndian.PutUint64(bs, wanted)
-	err = process.Write(wpid, addr64, bs)
+	binary.LittleEndian.PutUint64(bs, value)
+	err = process.Write(wpid, addr, bs)
 	if err != nil {
 		log.Fatalf("Write error: %s\n", err.Error())
 	}
-	// read data from process memory
-	data, err := process.Read(wpid, addr64, 8)
-	if err != nil {
-		log.Fatalf("Read error: %s\n", err.Error())
-	}
-	value := binary.LittleEndian.Uint64(data)
-	fmt.Printf("Value at [0x%x] is now [%d].\n", addr64, value)
 	// detach process and exit
 	err = process.Detach(wpid)
 	if err != nil {
