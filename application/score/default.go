@@ -5,7 +5,7 @@ import "github.com/andygeiss/go-memhack/business/player"
 // Service ...
 type Service interface {
 	Add(val int, p *player.Player)
-	Del(val int, p *player.Player)
+	Sub(val int, p *player.Player)
 	Get(p *player.Player) int
 }
 
@@ -22,8 +22,8 @@ func (s *DefaultService) Add(val int, p *player.Player) {
 	p.SetScore(p.GetScore() + val)
 }
 
-// Del ...
-func (s *DefaultService) Del(val int, p *player.Player) {
+// Sub ...
+func (s *DefaultService) Sub(val int, p *player.Player) {
 	p.SetScore(p.GetScore() - val)
 }
 

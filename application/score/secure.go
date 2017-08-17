@@ -24,8 +24,8 @@ func (s *SecurityService) Add(val int, p *player.Player) {
 	p.SetScore((p.GetScore() + val) ^ s.key)
 }
 
-// Del ...
-func (s *SecurityService) Del(val int, p *player.Player) {
+// Sub ...
+func (s *SecurityService) Sub(val int, p *player.Player) {
 	p.SetScore((p.GetScore() - val) ^ s.key)
 }
 
