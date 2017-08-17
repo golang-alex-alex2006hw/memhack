@@ -1,4 +1,4 @@
-# go-ptrace
+# go-memhack
 [![](https://goreportcard.com/badge/github.com/andygeiss/go-ptrace)](https://goreportcard.com/report/github.com/andygeiss/go-ptrace)
 
-A simple and short example of using ptrace.
+An example of using ptrace to hack process memory and counter-measures.
