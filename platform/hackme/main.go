@@ -10,8 +10,8 @@ import (
 
 func main() {
 	var s score.Service
-	//s = score.NewDefaultService()
-	s = score.NewSecurityService()
+	s = score.NewDefaultService()
+	//s = score.NewSecurityService()
 	var p *player.Player
 	p = player.NewPlayer("you")
 	s.Add(12345678, p)
