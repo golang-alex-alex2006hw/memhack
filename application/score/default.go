@@ -1,6 +1,6 @@
 package score
 
-import "github.com/andygeiss/go-ptrace/business/player"
+import "github.com/andygeiss/go-memhack/business/player"
 
 // Service ...
 type Service interface {

@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/andygeiss/go-ptrace/business/player"
+	"github.com/andygeiss/go-memhack/business/player"
 )
 
 // SecurityService ...

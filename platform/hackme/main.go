@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/andygeiss/go-ptrace/application/score"
-	"github.com/andygeiss/go-ptrace/business/player"
+	"github.com/andygeiss/go-memhack/application/score"
+	"github.com/andygeiss/go-memhack/business/player"
 )
 
 func main() {
