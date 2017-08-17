@@ -6,9 +6,9 @@ all: clean build test
 
 memhack:
 	@echo Building binaries ...
-	@go build -v $(LDFLAGS_STATIC) -o build/hackme platform/hackme/main.go
-	@go build -v $(LDFLAGS_STATIC) -o build/memhack platform/memhack/main.go
-	@go build -v $(LDFLAGS_STATIC) -o build/memsearch platform/memsearch/main.go
+	@go build $(LDFLAGS_STATIC) -o build/hackme platform/hackme/main.go
+	@go build $(LDFLAGS_STATIC) -o build/memhack platform/memhack/main.go
+	@go build $(LDFLAGS_STATIC) -o build/memsearch platform/memsearch/main.go
 	
 build: memhack
 
