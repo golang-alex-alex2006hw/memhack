@@ -9,7 +9,8 @@ memhack:
 	@go build $(LDFLAGS_STATIC) -o build/hackme platform/hackme/main.go
 	@go build $(LDFLAGS_STATIC) -o build/memhack platform/memhack/main.go
 	@go build $(LDFLAGS_STATIC) -o build/memsearch platform/memsearch/main.go
-	
+	@echo Done.
+
 build: memhack
 
 clean:
@@ -18,7 +19,10 @@ clean:
 
 install:
 	@echo Installing ptrace settings ...
-
+	echo "0" | sudo tee /proc/sys/kernel/yama/ptrace_scope > /dev/null
+	@echo Done.
+	
 test:
 	@echo Testing ...
 	@go test ./...
+	@echo Done.
