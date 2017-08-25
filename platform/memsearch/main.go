@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/andygeiss/go-memhack/infrastructure/process"
+	"github.com/andygeiss/lib/infrastructure/process"
 )
 
 func main() {
